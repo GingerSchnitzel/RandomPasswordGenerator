@@ -1,16 +1,16 @@
-
 import random
 import string
+import tkinter as tk
+from tkinter import ttk
 
+
+"""
 def get_password_length():
   while True:
     length = input("Enter password length: ")
-    # Try converting the input to an integer
     try:
       length = int(length)
-      # If conversion is successful, check if it's at least 8 characters
     except ValueError:
-      # Handle the case where conversion fails (non-numeric input)
       print("Invalid input for the length of the password. Please try again.")
       continue
     if length < 8:
@@ -18,9 +18,10 @@ def get_password_length():
         continue
     
     return length
+"""
 
-
-def generate_password (length=8, include_upper=True, include_lower=True, include_numbers=True, include_symbols= True):
+#generates a password of a customizable length which can include (or not) uppercase and/or lowercase letters, numbers and symbols
+def generate_password (length, include_upper, include_lower, include_numbers, include_symbols):
     char_sets = []
     if include_upper:
         char_sets.append(string.ascii_uppercase)
@@ -41,12 +42,42 @@ def generate_password (length=8, include_upper=True, include_lower=True, include
     return password
     
 
-    
+#window
+window = tk.Tk()
+window.title("Code In Place Final Project")
+window.geometry("800x500")
+
+#Canvas frame which adds padding between the window and title
+padding_frame = tk.Frame(master = window, padx=10, pady=10)
 
 
-def main():
-    password = generate_password()
-    print(password)
+#title
+title_label = ttk.Label(master = padding_frame, text = "Random Password Generator", font ="Poppins 22 bold" )
+title_label.pack(pady = 10)
+padding_frame.pack()
 
-if __name__ == '__main__':
-    main()
+# Frame to hold label and slider
+label_slider_frame = tk.Frame(master = window)
+
+
+# Label for password length
+length_label = tk.Label(master = window, text="Password Length:",font ="Poppins 12" )
+
+
+# Password length slider
+password_length = tk.IntVar()
+length_slider = tk.Scale(master = window, from_=1, to=50, orient=tk.HORIZONTAL, variable=password_length)
+length_label.pack(side="left", padx= 10, pady = 12.5)
+length_slider.pack(side="left")  
+label_slider_frame.pack()
+
+
+
+
+
+
+
+
+#run
+window.mainloop()
+
