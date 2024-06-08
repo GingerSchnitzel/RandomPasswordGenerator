@@ -2,6 +2,7 @@ import random
 import string
 import tkinter as tk
 from tkinter import ttk
+import clipboard 
 
 
 """
@@ -41,24 +42,32 @@ def generate_password (length, include_upper, include_lower, include_numbers, in
 
     return password
 
-# Generates a password with current values
-def update_on_slider_change(event= None):
-  
-  generated_password = generate_password(
-      password_length.get(),
-      use_uppercase_letters.get(),
-      use_lowercase_letters.get(),
-      use_numbers.get(),
-      use_symbols.get(),
-  )  
 
-  # Update password label with generated password
-  password_label.config(text=generated_password)
+
+
+
+def update_on_slider_change(event=None):
+ 
+    generated_password = generate_password(
+        password_length.get(),
+        use_uppercase_letters.get(),
+        use_lowercase_letters.get(),
+        use_numbers.get(),
+        use_symbols.get(),
+    )
+    password_label.config(text=generated_password)
+   
+
+def copy_password():
+    clipboard.copy(password_label.cget("text"))  # Copy current label text (password)
+
+ 
+    
 
 # Window
 window = tk.Tk()
 window.title("Code In Place Final Project")
-window.geometry("600x400")
+window.geometry("600x500")
 
 # Background frame
 background_frame = tk.Frame(master = window, background = "yellow")
@@ -128,8 +137,20 @@ print(current_password_length)
 # Frame to hold generated password
 password_frame = tk.Frame(master=background_frame, background = "lightgrey")
 # Label for password
-password_label = tk.Label(password_frame, font="Poppins 16 bold")
-password_label.grid(row = 0, column = 0, padx = 0, pady =(20, 20))  # Pack the label at the bottom
+password_label = tk.Label(password_frame, font="Poppins 18 bold")
+password_label.grid(row = 0, column = 0, padx = 0, pady =(20, 10))  # Pack the label at the bottom
+
+# Copy Button
+copy_button = tk.Button(password_frame, text="Copy", font="Poppins 10 bold", command=copy_password)  # Call update_on_slider_change on click
+copy_button.grid(row=1, column=0, padx=(10), pady=(0, 10))  # Place the button below password label
+
+# Regenerate Button
+copy_button = tk.Button(password_frame, text="Regenerate", font="Poppins 10 bold", command=update_on_slider_change)  # Call update_on_slider_change on click
+copy_button.grid(row=2, column=0, padx=(10), pady=(0, 14))  # Place the button below password label
+
+
+
+
 
 
 label_slider_frame.pack()
