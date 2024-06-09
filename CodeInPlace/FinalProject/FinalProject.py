@@ -29,7 +29,7 @@ def generate_password (length, include_upper, include_lower, include_numbers, in
 
 # Triggers the update of the password when a change occurs
 def update_on_slider_change(event=None):
- 
+
     generated_password = generate_password(
         password_length.get(),
         use_uppercase_letters.get(),
@@ -39,24 +39,21 @@ def update_on_slider_change(event=None):
     )
     password_label.config(text=generated_password)
    
+def copy_password(): 
+    clipboard.copy(password_label.cget("text"))  # Copy current password
 
-def copy_password():
-    if password_label.cget("text") != "Password copied successfully!":
-        clipboard.copy(password_label.cget("text"))  # Copy current password
+def show_password():
+    password_label.grid(row = 0, column = 0, padx = 0, pady =(20, 10)) 
+    copied_label.grid_forget()
 
-  
+def show_copy_success_message(): 
+    password_label.grid_forget()
+    copied_label.grid(row = 0, column = 0, padx = 0, pady =(20, 10))
 
-def restore_original_password(original_text):
-    password_label.config(text=original_text)  # Restore original password
-    update_on_slider_change()  # Call update_on_slider_change to ensure password is displayed again
+    # Schedule update function after 1.5 second 
+    window.after(1500, show_password)
 
-
-def show_copy_success_message():
-    original_text = password_label.cget("text")  # Store original password
-    password_label.config(text="Password copied successfully!")  # Show success message 
-
-    # Schedule update function after 10 seconds 
-    window.after(2000, restore_original_password, original_text)
+    
 
  
     
@@ -109,7 +106,7 @@ def increase_slider_value():
     update_on_slider_change()  # Trigger update
 
 plus_button = tk.Button(label_slider_frame, text="+", command=increase_slider_value)
-plus_button.grid(row=0, column=0, padx=(420,0), pady=(14,2))  # Place next to slider
+plus_button.grid(row=0, column=0, padx=(420,0), pady=(15,1))  # Place next to slider
 
 
 # Checkboxes and label variables (checkboxes will be checkd by default)
@@ -152,6 +149,10 @@ password_frame = tk.Frame(master=background_frame, background = "lightgrey")
 # Label for password
 password_label = tk.Label(password_frame, font="Poppins 16 bold")
 password_label.grid(row = 0, column = 0, padx = 0, pady =(20, 10))  # Pack the label at the bottom
+
+# Label for "Password copied successfully!"
+copied_label = tk.Label(password_frame, text = "Password copied successfully!",  font="Poppins 16 bold")
+  # Pack the label at the bottom
 
 # Copy Button
 copy_button = tk.Button(password_frame, text="Copy", font="Poppins 10 bold", command=lambda: [copy_password(), show_copy_success_message()])  # Call update_on_slider_change on click
