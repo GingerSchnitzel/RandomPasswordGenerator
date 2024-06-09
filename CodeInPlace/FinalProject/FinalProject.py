@@ -6,22 +6,6 @@ import clipboard
 from time import sleep
 
 
-"""
-def get_password_length():
-  while True:
-    length = input("Enter password length: ")
-    try:
-      length = int(length)
-    except ValueError:
-      print("Invalid input for the length of the password. Please try again.")
-      continue
-    if length < 8:
-        print("Password minimum length is 8 characters. Please try again.")
-        continue
-    
-    return length
-"""
-
 # Generates a password of a customizable length which can include (or not) uppercase and/or lowercase letters, numbers and symbols
 def generate_password (length, include_upper, include_lower, include_numbers, include_symbols):
     char_sets = []
