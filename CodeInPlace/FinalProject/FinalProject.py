@@ -179,11 +179,8 @@ copy_button.grid(row=2, column=0, padx=(10), pady=(0, 14))  # Place the button b
 
 
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 68cf0bf (Update FinalProject.py)
 
 label_slider_frame.pack()
 label_checkbox_frame.pack()
