@@ -53,10 +53,13 @@ def show_copy_success_message():
     # Schedule update function after 1.5 second 
     window.after(1500, show_password)
 
-    
-
  
-    
+background_color = "#F0F0F0"
+title_background = background_color
+label_slider_background = background_color
+checkboxes_background = background_color
+
+
 
 # Window
 window = tk.Tk()
@@ -64,10 +67,10 @@ window.title("Code In Place Final Project")
 window.geometry("700x500")
 
 # Background frame
-background_frame = tk.Frame(master = window, background = "yellow")
+background_frame = tk.Frame(master = window)
 
 # Frame which contains the title
-title_frame = tk.Frame(master = background_frame, background= "lightblue" )
+title_frame = tk.Frame(master = background_frame, background= title_background )
 
 # Title
 title_label = ttk.Label(master = title_frame, text = "Random Password Generator", font ="Poppins 22 bold" )
@@ -75,7 +78,7 @@ title_label.grid(row= 0, column = 0, padx = 60, pady = (16, 18), sticky="nsew" )
 title_frame.pack()
 
 # Frame to hold label and slider
-label_slider_frame = tk.Frame(master=background_frame, background = "pink")
+label_slider_frame = tk.Frame(master=background_frame, background = label_slider_background)
 
 
 # Label for password length
@@ -116,7 +119,7 @@ use_numbers = tk.IntVar(value=1)
 use_symbols = tk.IntVar(value=1)
 
 # Frame to hold checkboxes and their labels
-label_checkbox_frame = tk.Frame(master=background_frame, background = "lightgreen")
+label_checkbox_frame = tk.Frame(master=background_frame, background = checkboxes_background)
 
 # Checkbox creation
 uppercase_label = tk.Label(label_checkbox_frame, text="Include Uppercase Letters?", font ="Poppins 12")
@@ -144,7 +147,7 @@ symbols_checkbox = tk.Checkbutton(label_checkbox_frame, variable=use_symbols, co
 symbols_checkbox.grid(row=3, column=0, padx = (276,0), pady=(6,5))
 
 # Frame to hold generated password
-password_frame = tk.Frame(master=background_frame, background = "lightgrey")
+password_frame = tk.Frame(master=background_frame, background = checkboxes_background)
 
 # Label for password
 password_label = tk.Label(password_frame, font="Poppins 16 bold")
