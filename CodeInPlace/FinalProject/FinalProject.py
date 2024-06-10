@@ -77,11 +77,10 @@ def apply_theme(theme):
 # Window
 window = tk.Tk()
 window.title("Random Password Generator")
-window.geometry("760x550")
+window.geometry("760x620")
 
 # Define style
 style = ThemedStyle(window)
-  # Start with light theme
 
 dark_theme = {
     "background": "#282828",  
@@ -106,7 +105,7 @@ title_frame = tk.Frame(master=background_frame)
 # Title
 title_label = ttk.Label(master=title_frame, text="Random Password Generator", font="Poppins 22 bold")
 title_label.grid(row=0, column=0, padx=60, pady=(16, 18), sticky="nsew")
-title_frame.pack()
+
 
 # Frame to hold label and slider
 label_slider_frame = tk.Frame(master=background_frame)
@@ -201,19 +200,21 @@ copy_regenerate_buttons_frame.columnconfigure(1, weight=1)
 night_mode_frame = tk.Frame(master=background_frame)
 
 turned_on = tk.IntVar()
-night_mode_label = tk.Label(night_mode_frame, text="Dark Mode", font="Poppins 8")
-night_mode_label.grid(row=4, column=0, padx=(0, 230), pady=(5, 5))
+night_mode_label = tk.Label(night_mode_frame, text="Dark Mode", font="Poppins 9")
+night_mode_label.grid(row=0, column=0, padx=340, pady=(20, 0))
 
 night_mode_checkbox = tk.Checkbutton(night_mode_frame, variable=turned_on, command=toggle_night_mode)
-night_mode_checkbox.grid(row=4, column=0, padx=(280, 0), pady=(6, 5))
+night_mode_checkbox.grid(row=1, column=0 , pady=(0, 6))
 
+
+title_frame.pack()
 label_slider_frame.pack()
 label_checkbox_frame.pack()
 background_frame.pack(expand=True, fill=tk.BOTH)
 password_frame.pack()
 copy_regenerate_buttons_frame.pack()
-night_mode_frame.pack()
 update_on_slider_change()
+night_mode_frame.pack()
 
 # Run the application
 window.mainloop()
