@@ -42,12 +42,12 @@ def copy_password():
     clipboard.copy(password_label.cget("text"))  # Copy current password
 
 def show_password():
-    password_label.grid(row = 0, column = 0, padx = 0, pady =(20, 10)) 
+    password_label.grid(row=0, column=0, padx=0, pady=(20, 30)) 
     copied_label.grid_forget()
 
 def show_copy_success_message(): 
     password_label.grid_forget()
-    copied_label.grid(row = 0, column = 0, padx = 0, pady =(20, 10))
+    copied_label.grid(row=0, column=0, padx=0, pady=(20, 30))
 
     # Schedule update function after 1.5 second 
     window.after(1500, show_password)
