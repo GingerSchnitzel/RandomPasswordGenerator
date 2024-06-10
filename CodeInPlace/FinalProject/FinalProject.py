@@ -64,7 +64,7 @@ checkboxes_background = background_color
 # Window
 window = tk.Tk()
 window.title("Code In Place Final Project")
-window.geometry("700x500")
+window.geometry("750x540")
 
 # Background frame
 background_frame = tk.Frame(master = window)
@@ -151,21 +151,23 @@ password_frame = tk.Frame(master=background_frame, background = checkboxes_backg
 
 # Label for password
 password_label = tk.Label(password_frame, font="Poppins 16 bold")
-password_label.grid(row = 0, column = 0, padx = 0, pady =(20, 10))  # Pack the label at the bottom
+password_label.grid(row = 0, column = 0, padx = 0, pady =(20, 30))  # Pack the label at the bottom
 
 # Label for "Password copied successfully!"
 copied_label = tk.Label(password_frame, text = "Password copied successfully!",  font="Poppins 16 bold")
   # Pack the label at the bottom
 
+copy_regenerate_buttons_frame = tk.Frame(master=background_frame, background = checkboxes_background)
 # Copy Button
-copy_button = tk.Button(password_frame, text="Copy", font="Poppins 10 bold", command=lambda: [copy_password(), show_copy_success_message()])  # Call update_on_slider_change on click
+copy_button = tk.Button(copy_regenerate_buttons_frame, text="Copy", font="Poppins 10 bold", command=lambda: [copy_password(), show_copy_success_message()])  # Call update_on_slider_change on click
 copy_button.grid(row=1, column=0, padx=(10), pady=(0, 10))  # Place the button below password label
 
 # Regenerate Button
-copy_button = tk.Button(password_frame, text="Regenerate", font="Poppins 10 bold", command=update_on_slider_change)  # Call update_on_slider_change on click
-copy_button.grid(row=2, column=0, padx=(10), pady=(0, 14))  # Place the button below password label
+regenerate_button = tk.Button(copy_regenerate_buttons_frame, text="Regenerate", font="Poppins 10 bold", command=update_on_slider_change)  # Call update_on_slider_change on click
+regenerate_button.grid(row=2, column=0, padx=(10), pady=(0, 14))  # Place the button below password label
 
-
+copy_regenerate_buttons_frame.rowconfigure(1, weight=1)
+copy_regenerate_buttons_frame.columnconfigure(1, weight=1)
 
 
 
@@ -174,6 +176,7 @@ label_slider_frame.pack()
 label_checkbox_frame.pack()
 background_frame.pack(expand=True, fill=tk.BOTH)
 password_frame.pack()
+copy_regenerate_buttons_frame.pack()
 update_on_slider_change()
 
 
